@@ -15,9 +15,7 @@ receive data from the back-end.
 
 ## Reading Assignment
 
-### 6.1 Full-stack development (Node)
-
-https://learn.zybooks.com/zybook/SWE363Fall2025/chapter/6/section/1
+6.1 Full-stack development (Node)
 
 ------------------------------------------------------------------------
 
