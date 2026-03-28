@@ -9,12 +9,13 @@ LAB GOAL
 
 In this lab, you will get your first exposure to the back-end.
 
-This lab is only for understanding:
+This lab is mainly for understanding:
 - what a back-end is
 - what a server does
-- how the browser sends a request
+- how the browser or React sends a request
 - how the server sends a response
 - that front-end and back-end are separate parts
+- one simple example of React using server data
 
 You are NOT expected to learn Express in depth in this lab.
 Express details will be covered later in Section 6.4.
@@ -25,7 +26,7 @@ LAB SETUP INSTRUCTIONS
 
 1. Navigate to the project directory:
    Open your terminal and run:
-      cd 5-7-back-end-fundamentals
+      cd 6-1-back-end-fundamentals
 
 2. Install project dependencies:
    Run:
@@ -53,16 +54,21 @@ LAB SETUP INSTRUCTIONS
 IMPORTANT NOTE
 ===================================================================
 
-In this lab, you are not building a full front-end/back-end connection.
+In this lab, you are not building a full application with forms,
+CRUD operations, or a database.
 
-The purpose of this lab is only to:
+The purpose of this lab is to:
 - run a back-end server
 - create a few simple routes
 - observe what the server sends back
+- connect React to one back-end route
+- display student data from the server inside the React interface
 
-You will type the server code yourself in backend/server.js.
+You will write code in:
+- backend/server.js
+- src/App.jsx
 
-This App.jsx file only gives you:
+This App.jsx file gives you:
 - lab instructions
 - TODO list
 - coding hints
@@ -72,8 +78,9 @@ This App.jsx file only gives you:
 STUDENT TASKS
 ===================================================================
 
-Open the file:
+Open these files:
    backend/server.js
+   src/App.jsx
 
 Then complete the TODOs there.
 
@@ -81,6 +88,8 @@ Then complete the TODOs there.
 TODO 1:
 Import Express
 -------------------------------------------------------------------
+
+In server.js, import Express.
 
 Hint:
 - use the import keyword
@@ -102,13 +111,12 @@ Hint:
 Syntax hint:
    const app = ______();
 
-
 -------------------------------------------------------------------
 TODO 3:
 Start the server
 -------------------------------------------------------------------
 
-Start the server on port 3000.
+In server.js, start the server on port 3000.
 
 When the server starts, print a message in the terminal.
 
@@ -122,13 +130,12 @@ Syntax hint:
      console.log('________________________________');
    });
 
-
 -------------------------------------------------------------------
 TODO 4:
 Create the home route "/"
 -------------------------------------------------------------------
 
-When the browser opens:
+In server.js, create the route for:
    http://localhost:3000/
 
 The server should respond with:
@@ -149,11 +156,15 @@ TODO 5:
 Create the "/about" route
 -------------------------------------------------------------------
 
-When the browser opens:
+In server.js, create the route for:
    http://localhost:3000/about
 
 The server should respond with:
    This is the about route
+
+Hint:
+- use app.get(...)
+- use res.send(...)
 
 Syntax hint:
    app.get('_______', (req, res) => {
@@ -165,7 +176,7 @@ TODO 6:
 Create the "/student" route
 -------------------------------------------------------------------
 
-When the browser opens:
+In server.js, create the route for:
    http://localhost:3000/student
 
 The server should respond with JSON like this:
@@ -186,41 +197,123 @@ Syntax hint:
      });
    });
 
+-------------------------------------------------------------------
+TODO 7:
+request/response between React and server
+-------------------------------------------------------------------
+
+In App.jsx, write one simple example where React requests data from:
+   http://localhost:3000/student
+
+This will show a real case of request and response between:
+- React (front-end)
+- Express server (back-end)
+
+Hint:
+- React sends the request
+- server sends the response
+- use fetch(...)
+- this should happen when the page loads
+
+Syntax hint:
+   fetch('____________________________')
+     .then((res) => res.json())
+     .then((data) => {
+       // use the returned data here
+     });
+
+-------------------------------------------------------------------
+TODO 8:
+Make React use the student data
+-------------------------------------------------------------------
+
+In App.jsx, use the returned student data from the server inside the interface.
+
+For example, show:
+- student name
+- student major
+
+Hint:
+- create state for student data
+- store the fetched response in state
+- display the values inside the UI
+
+Syntax hint:
+   const [student, setStudent] = useState(____);
+
+and later:
+
+   setStudent(_____);
+
+and in JSX:
+
+   {student && (
+     <div>
+       <h3>{student._____}</h3>
+       <p>{student._____}</p>
+     </div>
+   )}
 
 ===================================================================
 HOW TO TEST
 ===================================================================
 
-After completing the TODOs in server.js:
+After completing the TODOs:
 
-1. Run:
+1. Start the back-end:
       node server.js
 
-2. Open these URLs in the browser:
+2. Start the front-end:
+      npm run dev
+
+3. Open these URLs in the browser:
       http://localhost:3000/
       http://localhost:3000/about
       http://localhost:3000/student
 
-3. Observe what each route returns.
+4. Open the React interface and check whether:
+   - the page loads correctly
+   - student data is being shown
+   - the student data is coming from the server
 
 ===================================================================
 UNDERSTANDING NOTES
 ===================================================================
 
+There are two simple flows in this lab.
+
+---------------------------------------------------
+1) Browser directly testing the server
+---------------------------------------------------
+
 When you open a URL such as:
-   http://localhost:3000/
+   http://localhost:3000/student
 
 The flow is:
 
 Browser sends REQUEST  --------->  Server
 Server sends RESPONSE  <--------- Browser
 
+---------------------------------------------------
+2) React requesting data from server
+---------------------------------------------------
+
+When React loads and requests:
+   http://localhost:3000/student
+
+The flow is:
+
+React sends REQUEST    --------->  Server
+Server sends RESPONSE  <--------- React
+React displays data in the UI
+
 In this lab:
-- the browser is the client
+- the browser/React is the client side
 - the server is the back-end
 - the server sends back text or JSON
+- React can use server data and show it on screen
 
-The front-end does not create the response.
+The front-end does not create the back-end response.
 The back-end creates the response.
 
 ===================================================================
@@ -234,112 +327,68 @@ After you finish, answer these questions:
 3. Who sends the request?
 4. Who sends the response?
 5. What is the difference between text response and JSON response?
+6. In this lab, which route is used by React to get student data?
+7. How does React use the returned student data?
 
 ===================================================================
 END OF LAB INSTRUCTIONS
 ===================================================================
 */
 
+import { useEffect, useState } from 'react';
 import './index.css';
 
 export default function App() {
+  // TODO 8:
+  // Create state to store student data
+  // Syntax hint:
+  // const [student, setStudent] = useState(____);
+  const [student, setStudent] = useState(null);
+
+  // TODO 7:
+  // Request student data from the server when the page loads
+  // Syntax hint:
+  // fetch('http://localhost:3000/student')
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setStudent(data);
+  //   });
+  useEffect(() => {
+    fetch('http://localhost:3000/student')
+      .then((res) => res.json())
+      .then((data) => {
+        setStudent(data);
+      });
+  }, []);
+
   return (
-    <div className="page">
-      <header className="topbar">
-        <div className="brand">
-          <div className="brand-mark">N</div>
-          <div>
-            <h1>NodeStart</h1>
-            <p>Back-end Foundations</p>
-          </div>
-        </div>
-
-        <nav className="nav">
-          <a href="#">Home</a>
-          <a href="#">Services</a>
-          <a href="#">Students</a>
-          <a href="#">Contact</a>
-        </nav>
-      </header>
-
-      <main className="hero">
-        <section className="hero-left">
-          <span className="badge">Intro Lab</span>
-          <h2>Build your first back-end server</h2>
-          <p>
-            This interface represents a simple web application.
-            In this lab, the front-end is already available.
-            Your task is to complete the back-end in <code>backend/server.js</code>.
-          </p>
-
-          <div className="hero-actions">
-            <button>Get Started</button>
-            <button className="secondary">View Services</button>
-          </div>
-        </section>
-
-        <section className="hero-right">
-          <div className="status-card">
-            <h3>Server Preview</h3>
-            <p>Test these routes after completing the server:</p>
-            <ul>
-              <li><code>/</code></li>
-              <li><code>/about</code></li>
-              <li><code>/student</code></li>
-            </ul>
-          </div>
-        </section>
-      </main>
-
-      <section className="cards">
-        <article className="card">
-          <h3>Home Route</h3>
-          <p>
-            Create a route that returns a simple text response from the server.
-          </p>
-        </article>
-
-        <article className="card">
-          <h3>About Route</h3>
-          <p>
-            Add another route to understand how different URLs return different responses.
-          </p>
-        </article>
-
-        <article className="card">
-          <h3>Student Route</h3>
-          <p>
-            Return a small JSON object to observe how the server can send structured data.
-          </p>
-        </article>
+    <main className="app-shell">
+      <section className="hero-box">
+        <p className="tag">Node + React Intro Lab</p>
+        <h1>Student Information</h1>
+        <p className="subtitle">
+          This page shows one simple example of React receiving data from the back-end.
+        </p>
       </section>
 
-      <section className="preview-panel">
-        <div className="preview-card large">
-          <h3>Student Profile Preview</h3>
-          <p className="muted">Example of data that could come from the back-end</p>
+      <section className="student-card">
+        <h2>Profile</h2>
 
-          <div className="profile-box">
-            <div className="avatar">A</div>
+        {student ? (
+          <div className="student-info">
+            <div className="avatar">
+              {student.name?.charAt(0)}
+            </div>
+
             <div>
-              <h4>Aisha</h4>
-              <p>Computer Science</p>
+              <h3>{student.name}</h3>
+              <p>{student.major}</p>
             </div>
           </div>
-        </div>
-
-        <div className="preview-card">
-          <h3>System Status</h3>
-          <div className="status-row">
-            <span>Front-end</span>
-            <span className="ok">Running</span>
-          </div>
-          <div className="status-row">
-            <span>Back-end</span>
-            <span className="pending">Complete TODOs</span>
-          </div>
-        </div>
+        ) : (
+          <p className="loading-text">Loading student data...</p>
+        )}
       </section>
-    </div>
+    </main>
   );
 }
