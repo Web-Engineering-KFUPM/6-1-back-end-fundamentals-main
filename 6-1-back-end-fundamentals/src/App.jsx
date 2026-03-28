@@ -113,6 +113,23 @@ Syntax hint:
 
 -------------------------------------------------------------------
 TODO 3:
+Allow React to access the server
+-------------------------------------------------------------------
+
+In server.js,
+
+- import cors
+- call the cors method inside the express app.
+
+// Syntax hint:
+//    import ______ from 'cors';
+
+// and:
+
+//    app.use(______);
+
+-------------------------------------------------------------------
+TODO 4:
 Start the server
 -------------------------------------------------------------------
 
@@ -131,7 +148,7 @@ Syntax hint:
    });
 
 -------------------------------------------------------------------
-TODO 4:
+TODO 5:
 Create the home route "/"
 -------------------------------------------------------------------
 
@@ -152,7 +169,7 @@ Syntax hint:
    });
 
 -------------------------------------------------------------------
-TODO 5:
+TODO 6:
 Create the "/about" route
 -------------------------------------------------------------------
 
@@ -172,7 +189,7 @@ Syntax hint:
    });
 
 -------------------------------------------------------------------
-TODO 6:
+TODO 7:
 Create the "/student" route
 -------------------------------------------------------------------
 
@@ -198,7 +215,7 @@ Syntax hint:
    });
 
 -------------------------------------------------------------------
-TODO 7:
+TODO 8:
 request/response between React and server
 -------------------------------------------------------------------
 
@@ -223,7 +240,7 @@ Syntax hint:
      });
 
 -------------------------------------------------------------------
-TODO 8:
+TODO 9:
 Make React use the student data
 -------------------------------------------------------------------
 
@@ -339,13 +356,13 @@ import { useEffect, useState } from 'react';
 import './index.css';
 
 export default function App() {
-  // TODO 8:
+  // TODO 9:
   // Create state to store student data
   // Syntax hint:
   // const [student, setStudent] = useState(____);
   const [student, setStudent] = useState(null);
 
-  // TODO 7:
+  // TODO 8:
   // Request student data from the server when the page loads
   // Syntax hint:
   // fetch('http://localhost:3000/student')
