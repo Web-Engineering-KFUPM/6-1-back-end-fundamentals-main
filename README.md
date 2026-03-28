@@ -1,112 +1,131 @@
-# Lab: Full-Stack Web Developement Fundamentals (Node.js + React)
+# Lab: Full-Stack Web Development Fundamentals (Node.js + React)
 
-# Note
-Follow the App.jsx file to run the code.
+> **Note:**
+> Please follow the `app.jsx` file to implement the TODOs.
+>
+> Please use app.jsx file to perform TODOs and follow the steps strictly to gain good marks in the assignment.  
+>  
+> **Due Date:** 30 March, 2026, **20:59 PM**
+
+---
 
 ## Overview of the Lab
 
-In this lab, you will learn the fundamentals of how data flows
-between the back-end (server) and the front-end (client). The back-end
-will be built using Node.js + Express and the front-end using React +
-Vite. You will be able to make a request from the front-end and
-receive data from the back-end.
+In this lab, you will get your first exposure to the back-end in a full-stack application.
 
-------------------------------------------------------------------------
+The front-end is already provided as a simple, realistic interface. Your main task in this lab is to complete the basic back-end server using **Node.js** and **Express**.
+
+This is an introductory lab, so the focus is only on:
+
+- what the back-end is
+- what a server does
+- how a browser sends a request
+- how the server sends a response
+- how different routes return different outputs
+
+This lab does **not** focus on CRUD operations, forms, or advanced Express concepts.
+
+---
 
 ## Reading Assignment
 
-6.1 Full-stack development (Node)
+**6.1 Full-stack development (Node)**
 
-------------------------------------------------------------------------
+---
+
+## Lab Objective
+
+By the end of this lab, you should be able to:
+
+- explain the difference between front-end and back-end
+- create a very basic server using Node.js and Express
+- run the server on a local port
+- create simple routes
+- test routes in the browser
+- identify the request → response flow
+
+---
+
+## What You Will Build
+
+You will complete a simple back-end server in:
+
+```txt
+backend/server.js
+```
+
+The server will handle these routes:
+
+- `/`
+- `/about`
+- `/student`
+
+Each route will send a response back to the browser.
+
+The front-end is already available and acts as a realistic interface for the lab. You do not need to place lab instructions inside the interface.
+
+---
 
 ## Fundamentals of Full-Stack Development
 
-### Overview of front-end and back-end development
+### Front-end and Back-end
 
--   **Front-end (client-side)**: code that runs in the browser (React)
--   **Back-end (server-side)**: code that runs on the server (Node.js +
-    Express)
+- **Front-end (client-side):** the part of the application the user sees and interacts with in the browser
+- **Back-end (server-side):** the part of the application that runs on the server and sends responses or data back to the browser
 
 ### What is Node.js?
 
-Node is JavaScript runtime environment. It allows us to run JavaScript
-outside the browser. This makes it possible to write back-end logic
-using JavaScript.
+Node.js is a JavaScript runtime that allows JavaScript code to run outside the browser.
 
-### How does Node help back-end development?
-
--   It handles server requests
--   It can read/write files
--   It can respond with data to the browser
+This means we can use JavaScript to build server-side applications.
 
 ### What is Express?
 
-Express is a minimal framework built on top of Node.js. It makes it
-easier to create routes, handle requests and send responses.
+Express is a lightweight tool used with Node.js to make server creation easier.
 
-### Why use Express in the back-end?
+In this lab, you are only using Express at a basic level. More detailed Express concepts will be covered later.
 
--   Simple to create APIs
--   Handles JSON easily
--   Less code than raw Node
+### What is a Route?
+
+A route is a path on the server, such as:
+
+```txt
+/
+```
+
+or
+
+```txt
+/about
+```
+
+When the browser opens a route, the server sends back a response.
 
 ### What is a Request and Response?
 
--   **Request:** when the front-end (browser) asks the server for some
-    information. Example: "give me all students"
--   **Response:** when the server sends back the answer. Example: server
-    responds with JSON data: `[ {id:1, name:'Ali'} ]`
+- **Request:** sent by the browser to the server
+- **Response:** sent by the server back to the browser
 
-### How to Create Routes in Express?
+Example flow:
 
-A route is a path on server that handles requests. Example routes:
-
-``` js
-app.get('/students', (req, res) => {
-  res.json(students);
-});
+```txt
+Browser sends REQUEST  --------->  Server
+Server sends RESPONSE  <--------- Browser
 ```
 
--   `GET` → request data
--   `POST` → send data to server
+---
 
-### How to Test Back-End URL to See JSON Output?
 
-1)  First run server:
+## Checklist Before Submitting the Lab
 
-``` bash
-node server.js
-```
+- [ ] Does the server run without errors?
+- [ ] Did you complete the TODOs in `backend/server.js`?
+- [ ] Did you test the `/` route?
+- [ ] Did you test the `/about` route?
+- [ ] Did you test the `/student` route?
+- [ ] Can you explain what the back-end does?
+- [ ] Can you explain what a request is?
+- [ ] Can you explain what a response is?
+- [ ] Can you explain the difference between front-end and back-end?
 
-2)  Open browser and type URL:
 
-```{=html}
-<!-- -->
-```
-    http://localhost:3000/api/students
-
-If everything is correct, you will see JSON data directly in browser.
-
-------------------------------------------------------------------------
-
-### Flow of data from back-end to front-end
-
-1.  Front-end sends request →
-    `fetch("http://localhost:3000/api/students")`
-2.  Back-end receives request and processes it
-3.  Back-end sends JSON response → `res.json(data)`
-4.  Front-end receives response and displays it
-
-------------------------------------------------------------------------
-
-## Checklist before submitting the lab
-
--   [ ] Does the server run without errors?
--   [ ] Does the client run without errors?
--   [ ] Did you test hitting the API in the browser and see JSON?
--   [ ] Did you test fetching data from React?
--   [ ] Did you understand the flow of request → response?
--   [ ] Can you explain what is back-end and what is front-end?
--   [ ] Can you explain what is request and what is response?
-
-------------------------------------------------------------------------
