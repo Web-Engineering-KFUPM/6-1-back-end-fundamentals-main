@@ -1,24 +1,25 @@
-const express = require("express");
-const app = express();
+// TODO 1: Import Express
 
-const cors = require("cors");
-app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("Hello from the back-end server");
-});
 
-app.get("/about", (req, res) => {
-  res.send("This is the about route");
-});
+// TODO 2: Create the Express app and store it in a variable named app
 
-app.get("/student", (req, res) => {
-  res.json({
-    name: "Aisha",
-    major: "Computer Science"
-  });
-});
 
-app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
+
+// TODO 3: Allow React to access the server
+
+
+
+// TODO 5: Create the home route "/"
+
+
+
+// TODO 6: Create the "/about" route
+
+
+
+// TODO 7: Create the "/student" route
+
+
+
+// TODO 4: Start the server on port 3000

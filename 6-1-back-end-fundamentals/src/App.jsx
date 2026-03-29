@@ -358,20 +358,17 @@ import './index.css';
 export default function App() {
   // TODO 9:
   // Create state to store student data
-  const [student, setStudent] = useState(null);
+  // Syntax hint:
+  // const [student, setStudent] = useState(____);
 
   // TODO 8:
   // Request student data from the server when the page loads
-  useEffect(() => {
-    fetch('http://localhost:3000/student')
-      .then((res) => res.json())
-      .then((data) => {
-        setStudent(data);
-      })
-      .catch((error) => {
-        console.error('Error fetching student data:', error);
-      });
-  }, []);
+  // Syntax hint:
+  // fetch('http://localhost:3000/student')
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setStudent(data);
+  //   });
 
   return (
     <main className="app-shell">
